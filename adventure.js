@@ -54,6 +54,8 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
+        this.onEnter();
+
         this.add.rectangle(this.w * 0.75, 0, this.w * 0.25, this.h).setOrigin(0, 0).setFillStyle(0);
         this.add.text(this.w * 0.75 + this.s, this.s)
             .setText(this.name)
@@ -84,7 +86,7 @@ class AdventureScene extends Phaser.Scene {
                 }
             });
 
-        this.onEnter();
+        //this.onEnter();
 
     }
 

@@ -3,9 +3,16 @@ class Bedroom extends AdventureScene {
         super("bedroom", "The Bedroom");
     }
 
+    preload() {
+        this.load.image('bedroom', 'assets/bedroom.png');
+    }
+
     onEnter() {
 
-        let clip = this.add.text(this.w * 0.3, this.w * 0.3, "📎 paperclip")
+        let background = this.add.image(this.w * 0.375, this.h * 0.5, 'bedroom')
+            .setDisplaySize(this.w * 0.75, this.h);
+
+        let clip = this.add.text(this.w * 0.5, this.w * 0.3, "📎 paperclip")
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => this.showMessage("Metal, bent."))
@@ -65,7 +72,16 @@ class Kitchen extends AdventureScene {
     constructor() {
         super("kitchen", "The Kitchen");
     }
+
+    preload() {
+        this.load.image('kitchen', 'assets/kitchen.png');
+    }
+
     onEnter() {
+
+        let background = this.add.image(this.w * 0.375, this.h * 0.5, 'kitchen')
+            .setDisplaySize(this.w * 0.75, this.h);
+
         this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -96,17 +112,45 @@ class LivingRoom extends AdventureScene {
     constructor() {
         super("living", "The Living Room");
     }
+
+    preload() {
+        this.load.image('living', 'assets/living.png');
+    }
+
+    onEnter() {
+        let background = this.add.image(this.w * 0.375, this.h * 0.5, 'living')
+            .setDisplaySize(this.w * 0.75, this.h);
+    }
+    
 }
 
 class Bathroom extends AdventureScene {
     constructor() {
         super("bathroom", "The Bathroom");
     }
+
+    preload() {
+        this.load.image('bathroom', 'assets/bathroom.png');
+    }
+
+    onEnter() {
+        let background = this.add.image(this.w * 0.375, this.h * 0.5, 'bathroom')
+            .setDisplaySize(this.w * 0.75, this.h);
+    }
 }
 
 class Basement extends AdventureScene {
     constructor() {
         super("basement", "The Basement");
+    }
+
+    preload() {
+        this.load.image('basement', 'assets/basement.png');
+    }
+
+    onEnter() {
+        let background = this.add.image(this.w * 0.375, this.h * 0.5, 'basement')
+            .setDisplaySize(this.w * 0.75, this.h);
     }
 }
 
