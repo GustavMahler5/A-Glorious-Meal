@@ -1,6 +1,6 @@
-class Demo1 extends AdventureScene {
+class Bedroom extends AdventureScene {
     constructor() {
-        super("demo1", "First Room");
+        super("bedroom", "The Bedroom");
     }
 
     onEnter() {
@@ -54,16 +54,16 @@ class Demo1 extends AdventureScene {
                     this.loseItem("key");
                     this.showMessage("*squeak*");
                     door.setText("🚪 unlocked door");
-                    this.gotoScene('demo2');
+                    this.gotoScene('kitchen');
                 }
             })
 
     }
 }
 
-class Demo2 extends AdventureScene {
+class Kitchen extends AdventureScene {
     constructor() {
-        super("demo2", "The second room has a long name (it truly does).");
+        super("kitchen", "The Kitchen");
     }
     onEnter() {
         this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
@@ -73,7 +73,7 @@ class Demo2 extends AdventureScene {
                 this.showMessage("You've got no other choice, really.");
             })
             .on('pointerdown', () => {
-                this.gotoScene('demo1');
+                this.gotoScene('bedroom');
             });
 
         let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
@@ -92,6 +92,24 @@ class Demo2 extends AdventureScene {
     }
 }
 
+class LivingRoom extends AdventureScene {
+    constructor() {
+        super("living", "The Living Room");
+    }
+}
+
+class Bathroom extends AdventureScene {
+    constructor() {
+        super("bathroom", "The Bathroom");
+    }
+}
+
+class Basement extends AdventureScene {
+    constructor() {
+        super("basement", "The Basement");
+    }
+}
+
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
@@ -101,7 +119,7 @@ class Intro extends Phaser.Scene {
         this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('demo1'));
+            this.time.delayedCall(1000, () => this.scene.start('bedroom'));
         });
     }
 }
@@ -125,7 +143,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
-    title: "Adventure Game",
+    scene: [Intro, Bedroom, Kitchen, LivingRoom, Bathroom, Basement, Outro],
+    title: "A Glorious Meal",
 });
 

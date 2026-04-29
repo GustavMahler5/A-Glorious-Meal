@@ -1,22 +1,63 @@
-A simple adventure game by {who?} based on a simple adventure game engine by [Adam Smith](https://github.com/rndmcnlly).
+# A Glorious Meal
+Point and Click Adventure Game using Phaser - CMPM 120
+----------------------
+This is a point and click adventure game created by Jason Holtman and Adam Smith.  
 
-Code requirements:
-- **4+ scenes based on `AdventureScene`**: unsatisfied (name at least 4 of the classes).
-- **2+ scenes *not* based on `AdventureScene`**: unsatisfied (name the classes).
-- **2+ methods or other enhancement added to the adventure game engine to simplify my scenes**:
-    - Enhancement 1: unsatisfied (name the method and explain the use of it).
-    - Enhancement 2: unsatisfied (name the method and explain the use of it).
+Scenes using Adventure.js
+----------------------
+This animation features 5 different scenes which utilize Adventure.js:
 
-Experience requirements:
-- **4+ locations in the game world**: unsatisfied (name at least 4 of the classes).
-- **2+ interactive objects in most scenes**: unsatisfied (describe two examples)
-- **Many objects have `pointerover` messages**: unsatisfied (describe two examples)
-- **Many objects have `pointerdown` effects**: unsatisfied (describe two examples)
-- **Some objects are themselves animated**: unsatisfied (describe two examples)
+- The Bedroom
+- The Living Room
+- The Kitchen
+- The Basement
+- The Bathroom
 
-Asset sources:
-- (For each image/audio/video asset used, describe how it was created. What tool did you use to create it? Was it based on another work? If so, how did you change it, and where can we learn more about the original work for comparison? Use [Markdown link syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#links).)
+Methods Appended to Adventure.js
+----------------------
+There are 2 methods that are appended to the engine:
 
-Code sources:
-- `adventure.js` and `index.html` were created for this project [Adam Smith](https://github.com/rndmcnlly) and edited by me.
-- `game.js` was sketched by [Adam Smith](https://github.com/rndmcnlly) and rewritten by me.
+addInteractable(x, y, width, height, label, onClick) {}
+useItem(requiredItem, selectedItem) {}
+
+Scenes Not Using Adventure.js
+----------------------
+There are 2 scenes that do not utilize the engine:
+
+- Introduction Scene
+- Ending Scene
+
+Locations in the Game World
+----------------------
+There are 5 locations in this world:
+
+- The Bedroom
+- The Living Room
+- The Kitchen
+- The Basement
+- The Bathroom
+
+Interactive Objects in Each Scene
+----------------------
+There are many interactive objects in each scene:
+
+The Bedroom: A closet and a drawer.  
+The Living Room: A table and a stepladder.  
+The Kitchen: The fridge, cabinets, pantry, and counter.  
+The Basement: A table and a safe. 
+The Bathroom: The sink, shower, and mirror. 
+
+Objects with Pointerover Messages
+----------------------
+All objects mentioned above have pointerover messages. 
+
+Objects with Pointerdown Effects
+----------------------
+All objects mentioned above have pointerdown effects.  
+
+Animated Objects
+----------------------
+All objects that are aquirable have dissappearing animations upon collection and usage.  
+
+Assets
+----------------------
