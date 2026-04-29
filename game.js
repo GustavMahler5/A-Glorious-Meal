@@ -12,39 +12,39 @@ class Bedroom extends AdventureScene {
         let background = this.add.image(this.w * 0.375, this.h * 0.5, 'bedroom')
             .setDisplaySize(this.w * 0.75, this.h);
 
-        let clip = this.add.text(this.w * 0.5, this.w * 0.3, "📎 paperclip")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("Metal, bent."))
-            .on('pointerdown', () => {
-                this.showMessage("No touching!");
-                this.tweens.add({
-                    targets: clip,
-                    x: '+=' + this.s,
-                    repeat: 2,
-                    yoyo: true,
-                    ease: 'Sine.inOut',
-                    duration: 100
-                });
-            });
+        // let clip = this.add.text(this.w * 0.5, this.w * 0.3, "📎 paperclip")
+        //     .setFontSize(this.s * 2)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("Metal, bent."))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("No touching!");
+        //         this.tweens.add({
+        //             targets: clip,
+        //             x: '+=' + this.s,
+        //             repeat: 2,
+        //             yoyo: true,
+        //             ease: 'Sine.inOut',
+        //             duration: 100
+        //         });
+        //     });
 
-        let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("It's a nice key.")
-            })
-            .on('pointerdown', () => {
-                this.showMessage("You pick up the key.");
-                this.gainItem('key');
-                this.tweens.add({
-                    targets: key,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => key.destroy()
-                });
-            })
+        // let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
+        //     .setFontSize(this.s * 2)
+        //     .setInteractive()
+        //     .on('pointerover', () => {
+        //         this.showMessage("It's a nice key.")
+        //     })
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the key.");
+        //         this.gainItem('key');
+        //         this.tweens.add({
+        //             targets: key,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => key.destroy()
+        //         });
+        //     })
 
         // let door = this.add.rectangle(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5)
         //     .setInteractive( { cursor: 'pointer' } )
@@ -65,7 +65,17 @@ class Bedroom extends AdventureScene {
         //         }
         //     })
 
-        this.addInteractable(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5, "Kitchen?", () => {this.gotoScene("kitchen")});
+        this.addInteractable(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5, "Door to kitchen", 
+            () => {this.gotoScene("kitchen")});
+        this.addInteractable(this.w * 0.2, this.h * 0.51, this.w * 0.1, this.h * 0.45, "Your closet", 
+            () => {this.showMessage("Wonder what I'm gonna wear today...");});
+        this.addInteractable(this.w * 0.7, this.h * 0.46, this.w * 0.08, this.h * 0.23, "The window", 
+            () => {this.showMessage("The view is nice, but you can't go out there.")});
+        this.addInteractable(this.w * 0.37, this.h * 0.68, this.w * 0.18, this.h * 0.40, "Your bed", 
+            () => {this.showMessage("It's comfy, but you should get going.")});
+        this.addInteractable(this.w * 0.5, this.h * 0.7, this.w * 0.07, this.h * 0.15, "Your nightstand", 
+            () => {this.showMessage("You open your nightstand to find a strange series of numbers.\n17, 5, 31.\nWhat could it mean?")});
+
 
     }
 }

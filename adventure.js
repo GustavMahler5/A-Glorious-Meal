@@ -229,7 +229,7 @@ class AdventureScene extends Phaser.Scene {
      */
     addInteractable(x, y, width, height, label, onClick) {
         //this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
-        this.add.rectangle(x, y, width, height).setAlpha(1)
+        this.add.rectangle(x, y, width, height)
             .setInteractive({ cursor: "pointer" })
             .on('pointerover', () => this.showMessage(label))
             .on('pointerdown', onClick);
