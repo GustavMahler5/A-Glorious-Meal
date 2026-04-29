@@ -46,24 +46,26 @@ class Bedroom extends AdventureScene {
                 });
             })
 
-        let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 locked door")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                if (this.hasItem("key")) {
-                    this.showMessage("You've got the key for this door.");
-                } else {
-                    this.showMessage("It's locked. Can you find a key?");
-                }
-            })
-            .on('pointerdown', () => {
-                if (this.hasItem("key")) {
-                    this.loseItem("key");
-                    this.showMessage("*squeak*");
-                    door.setText("🚪 unlocked door");
-                    this.gotoScene('kitchen');
-                }
-            })
+        // let door = this.add.rectangle(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5)
+        //     .setInteractive( { cursor: 'pointer' } )
+        //     .setAlpha(1) // invisible but interactive
+        //     .on('pointerover', () => {
+        //         if (this.hasItem("key")) {
+        //             this.showMessage("You've got the key for this door.");
+        //         } else {
+        //             this.showMessage("It's locked. Can you find a key?");
+        //         }
+        //     })
+        //     .on('pointerdown', () => {
+        //         if (this.hasItem("key")) {
+        //             this.loseItem("key");
+        //             this.showMessage("*squeak*");
+        //             //door.setText("🚪 unlocked door");
+        //             this.gotoScene("kitchen");
+        //         }
+        //     })
+
+        this.addInteractable(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5, "Kitchen?", () => {this.gotoScene("kitchen")});
 
     }
 }

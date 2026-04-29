@@ -54,7 +54,7 @@ class AdventureScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        this.onEnter();
+        //this.onEnter();
 
         this.add.rectangle(this.w * 0.75, 0, this.w * 0.25, this.h).setOrigin(0, 0).setFillStyle(0);
         this.add.text(this.w * 0.75 + this.s, this.s)
@@ -86,7 +86,7 @@ class AdventureScene extends Phaser.Scene {
                 }
             });
 
-        //this.onEnter();
+        this.onEnter();
 
     }
 
@@ -228,9 +228,9 @@ class AdventureScene extends Phaser.Scene {
      * @param {*} onClick The function to call when the player clicks the interactable area
      */
     addInteractable(x, y, width, height, label, onClick) {
-        this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
-        this.add.rectangle(x, y, width, height).setOrigin(0, 0).setFillStyle(0, 0)
-            .setInteractive({ useHandCursor: true })
+        //this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
+        this.add.rectangle(x, y, width, height).setAlpha(1)
+            .setInteractive({ cursor: "pointer" })
             .on('pointerover', () => this.showMessage(label))
             .on('pointerdown', onClick);
     }
@@ -252,6 +252,21 @@ class AdventureScene extends Phaser.Scene {
             this.showMessage("Used " + requiredItem + ".");
         }
     }
+
+    // /**
+    //  * 
+    //  * Set a flag for the scene. We use this to track the state of the scene such as 
+    //  * when the player has interacted with an object or aquired a key item.
+    //  * 
+    //  * @param {*} flag // The name of the flag to set
+    //  */
+    // setFlag(flag) {
+    //     this[flag] = true;
+    // }
+
+    // checkFlag(flag) {
+    //     return this[flag] == true;
+    // }
 
     /**
      * Subclass hook: called at the end of {@link AdventureScene#create}, after
