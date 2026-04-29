@@ -17,7 +17,7 @@ Methods Appended to Adventure.js
 ----------------------
 There are 2 methods that are appended to the engine:
 
-addInteractable(x, y, width, height, label, onClick) {}
+addInteractable(x, y, width, height, label, onClick) {}  
 useItem(requiredItem, selectedItem) {}
 
 Scenes Not Using Adventure.js
@@ -61,3 +61,4 @@ All objects that are aquirable have dissappearing animations upon collection and
 
 Assets
 ----------------------
+All background images are drawn by Jason Holtman
