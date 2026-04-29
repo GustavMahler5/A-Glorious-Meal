@@ -215,6 +215,43 @@ class AdventureScene extends Phaser.Scene {
     }
 
     /**
+     * 
+     * Create a new interactable area in the scene.
+     * 
+     * @param {*} x The starting x position
+     * @param {*} y The starting y position
+     * @param {*} width How much the clickable area will span vertically
+     * @param {*} height How much the clickable area will span horizontally
+     * @param {*} label The text to show when the player hovers over the interactable area
+     * @param {*} onClick The function to call when the player clicks the interactable area
+     */
+    addInteractable(x, y, width, height, label, onClick) {
+        this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
+        this.add.rectangle(x, y, width, height).setOrigin(0, 0).setFillStyle(0, 0)
+            .setInteractive({ useHandCursor: true })
+            .on('pointerover', () => this.showMessage(label))
+            .on('pointerdown', onClick);
+    }
+
+    /**
+     * 
+     * Use an item from the inventory. If the item is not the required item, show a failure message.
+     * 
+     * @param {*} requiredItem // The item required to successfully interact with the object
+     * @param {*} selectedItem // The item the player is trying to use on the object
+     */
+    useItem(requiredItem, selectedItem) {
+        if (selectedItem != requiredItem) {
+            this.showMessage("This doesn't seem to work here...");
+            return;
+        }
+        if (this.hasItem(requiredItem)) {
+            this.loseItem(requiredItem);
+            this.showMessage("Used " + requiredItem + ".");
+        }
+    }
+
+    /**
      * Subclass hook: called at the end of {@link AdventureScene#create}, after
      * the message box and inventory panel exist. Override this in your scene
      * to add your location's interactive objects.
