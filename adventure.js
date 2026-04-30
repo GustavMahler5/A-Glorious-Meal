@@ -42,7 +42,7 @@ class AdventureScene extends Phaser.Scene {
      */
     create() {
         /** @type {number} Duration in ms of scene fade-in / fade-out. */
-        this.transitionDuration = 1000;
+        this.transitionDuration = 750;
 
         /** @type {number} Game width in scaled pixels (nominally 1920). */
         this.w = this.game.config.width;
@@ -102,7 +102,7 @@ class AdventureScene extends Phaser.Scene {
             targets: this.messageBox,
             alpha: { from: 1, to: 0 },
             easing: 'Quintic.in',
-            duration: 4 * this.transitionDuration
+            duration: 6 * this.transitionDuration
         });
     }
 
@@ -231,6 +231,23 @@ class AdventureScene extends Phaser.Scene {
         //this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
         this.add.rectangle(x, y, width, height, 0)
             .setInteractive({ cursor: "pointer" })
+            .on('pointerover', () => this.showMessage(label))
+            .on('pointerdown', onClick);
+    }
+
+    /**
+     * 
+     * Create new interactable text in the scene.
+     * 
+     * @param {*} x The starting x position
+     * @param {*} y The starting y position
+     * @param {*} label The text to show what the interaction will do
+     * @param {*} onClick The function to call when the player clicks the interactable area
+     */
+    addInteractableText(x, y, text, label, onClick) {
+        this.add.text(x, y, text).setStyle({ fontSize: `${2.5 * this.s}px`, color: '#72bf6a' })
+            .setInteractive({ cursor: "pointer" })
+            .setWordWrapWidth(this.w * 0.25 - 2 * this.s)
             .on('pointerover', () => this.showMessage(label))
             .on('pointerdown', onClick);
     }
