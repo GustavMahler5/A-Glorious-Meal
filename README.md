@@ -18,14 +18,16 @@ Methods Appended to Adventure.js
 There are 2 methods that are appended to the engine:
 
 addInteractable(x, y, width, height, label, onClick) {}  
+addInteractableText(x, y, text, label, onClick) {}  
 useItem(requiredItem, selectedItem) {}
+tweenAway(object) {}  
 
 Scenes Not Using Adventure.js
 ----------------------
 There are 2 scenes that do not utilize the engine:
 
-- Introduction Scene
-- Ending Scene
+- Introduction Scene  
+- Ending Scene x3  
 
 Locations in the Game World
 ----------------------
@@ -41,6 +43,7 @@ Interactive Objects in Each Scene
 ----------------------
 There are many interactive objects in each scene:
 
+Examples:  
 The Bedroom: A closet and a drawer.  
 The Living Room: A table and a stepladder.  
 The Kitchen: The fridge, cabinets, pantry, and counter.  
@@ -61,4 +64,5 @@ All objects that are aquirable have dissappearing animations upon collection and
 
 Assets
 ----------------------
-All background images are drawn by Jason Holtman
+All image assets are drawn by Jason Holtman
+Used https://www.remove.bg for creating transparent images
