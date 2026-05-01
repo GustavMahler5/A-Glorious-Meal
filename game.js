@@ -4,7 +4,7 @@ class Bedroom extends AdventureScene {
     }
 
     preload() {
-        this.load.image('bedroom', 'Assets/bedroom.png');
+        this.load.image('bedroom', 'assets/bedroom.png');
     }
 
     onEnter() {
@@ -43,13 +43,13 @@ class Kitchen extends AdventureScene {
     }
 
     preload() {
-        this.load.image('kitchen', 'Assets/kitchen.png');
-        this.load.image('patheticbackground', 'Assets/patheticbackground.png');
-        this.load.image('patheticburger', 'Assets/patheticburger-removebg-preview.png');
-        this.load.image('betterbackground', 'Assets/betterbackground.png');
-        this.load.image('betterburger', 'Assets/betterburger-removebg-preview.png');
-        this.load.image('gloriousbackground', 'Assets/gloriousbackground.png');
-        this.load.image('gloriousburger', 'Assets/gloriousburger-removebg-preview.png');
+        this.load.image('kitchen', 'assets/kitchen.png');
+        this.load.image('patheticbackground', 'assets/patheticbackground.png');
+        this.load.image('patheticburger', 'assets/patheticburger-removebg-preview.png');
+        this.load.image('betterbackground', 'assets/betterbackground.png');
+        this.load.image('betterburger', 'assets/betterburger-removebg-preview.png');
+        this.load.image('gloriousbackground', 'assets/gloriousbackground.png');
+        this.load.image('gloriousburger', 'assets/gloriousburger-removebg-preview.png');
     }
 
     onEnter() {
@@ -161,8 +161,8 @@ class LivingRoom extends AdventureScene {
     }
 
     preload() {
-        this.load.image('living', 'Assets/livingroom.png');
-        this.load.image('key', 'Assets/key-removebg-preview.png');
+        this.load.image('living', 'assets/livingroom.png');
+        this.load.image('key', 'assets/key-removebg-preview.png');
     }
 
     onEnter() {
@@ -214,7 +214,7 @@ class Bathroom extends AdventureScene {
     }
 
     preload() {
-        this.load.image('bathroom', 'Assets/bathroom.png');
+        this.load.image('bathroom', 'assets/bathroom.png');
     }
 
     onEnter() {
@@ -250,9 +250,9 @@ class Basement extends AdventureScene {
     }
 
     preload() {
-        this.load.image('basement', 'Assets/basement.png');
-        this.load.image('stepladder', 'Assets/stepladder-removebg-preview.png');
-        this.load.image('key', 'Assets/key-removebg-preview.png');
+        this.load.image('basement', 'assets/basement.png');
+        this.load.image('stepladder', 'assets/stepladder-removebg-preview.png');
+        this.load.image('key', 'assets/key-removebg-preview.png');
     }
 
     onEnter() {
@@ -351,8 +351,8 @@ class BestEnding extends Phaser.Scene {
         super('bestending');
     }
     preload() {
-        this.load.image('gloriousbackground', 'Assets/gloriousbackground.png');
-        this.load.image('gloriousburger', 'Assets/gloriousburger-removebg-preview.png');
+        this.load.image('gloriousbackground', 'assets/gloriousbackground.png');
+        this.load.image('gloriousburger', 'assets/gloriousburger-removebg-preview.png');
     }
     create() {
         this.cameras.main.setBackgroundColor('#444');
@@ -372,8 +372,8 @@ class GoodEnding extends Phaser.Scene {
         super('goodending');
     }
     preload() {
-        this.load.image('betterbackground', 'Assets/betterbackground.png');
-        this.load.image('betterburger', 'Assets/betterburger-removebg-preview.png');
+        this.load.image('betterbackground', 'assets/betterbackground.png');
+        this.load.image('betterburger', 'assets/betterburger-removebg-preview.png');
     }
     create() {
         this.cameras.main.setBackgroundColor('#444');
@@ -393,8 +393,8 @@ class BadEnding extends Phaser.Scene {
         super('badending');
     }
     preload() {
-        this.load.image('patheticbackground', 'Assets/patheticbackground.png');
-        this.load.image('patheticburger', 'Assets/patheticburger-removebg-preview.png');
+        this.load.image('patheticbackground', 'assets/patheticbackground.png');
+        this.load.image('patheticburger', 'assets/patheticburger-removebg-preview.png');
     }
     create() {
         this.cameras.main.setBackgroundColor('#444');
