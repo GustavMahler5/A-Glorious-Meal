@@ -24,6 +24,8 @@ class AdventureScene extends Phaser.Scene {
      */
     init(data) {
         this.inventory = data.inventory || [];
+        let handsWashed = false;
+        let openedFridge = false;
     }
 
     /**
@@ -229,7 +231,7 @@ class AdventureScene extends Phaser.Scene {
      */
     addInteractable(x, y, width, height, label, onClick) {
         //this.add.text(x, y, label).setStyle({ fontSize: `${1.5 * this.s}px` }).setWordWrapWidth(width);
-        this.add.rectangle(x, y, width, height, 0)
+        return this.add.rectangle(x, y, width, height)
             .setInteractive({ cursor: "pointer" })
             .on('pointerover', () => this.showMessage(label))
             .on('pointerdown', onClick);
@@ -250,6 +252,16 @@ class AdventureScene extends Phaser.Scene {
             .setWordWrapWidth(this.w * 0.25 - 2 * this.s)
             .on('pointerover', () => this.showMessage(label))
             .on('pointerdown', onClick);
+    }
+
+    tweenAway(object) {
+        this.tweens.add({
+            targets: object,
+            y: `-=${2 * this.s}`,
+            alpha: { from: 1, to: 0 },
+            duration: 500,
+            onComplete: () => object.destroy()
+        });
     }
 
     /**

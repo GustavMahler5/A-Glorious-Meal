@@ -12,59 +12,6 @@ class Bedroom extends AdventureScene {
         let background = this.add.image(this.w * 0.375, this.h * 0.5, 'bedroom')
             .setDisplaySize(this.w * 0.75, this.h);
 
-        // let clip = this.add.text(this.w * 0.5, this.w * 0.3, "📎 paperclip")
-        //     .setFontSize(this.s * 2)
-        //     .setInteractive()
-        //     .on('pointerover', () => this.showMessage("Metal, bent."))
-        //     .on('pointerdown', () => {
-        //         this.showMessage("No touching!");
-        //         this.tweens.add({
-        //             targets: clip,
-        //             x: '+=' + this.s,
-        //             repeat: 2,
-        //             yoyo: true,
-        //             ease: 'Sine.inOut',
-        //             duration: 100
-        //         });
-        //     });
-
-        // let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
-        //     .setFontSize(this.s * 2)
-        //     .setInteractive()
-        //     .on('pointerover', () => {
-        //         this.showMessage("It's a nice key.")
-        //     })
-        //     .on('pointerdown', () => {
-        //         this.showMessage("You pick up the key.");
-        //         this.gainItem('key');
-        //         this.tweens.add({
-        //             targets: key,
-        //             y: `-=${2 * this.s}`,
-        //             alpha: { from: 1, to: 0 },
-        //             duration: 500,
-        //             onComplete: () => key.destroy()
-        //         });
-        //     })
-
-        // let door = this.add.rectangle(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5)
-        //     .setInteractive( { cursor: 'pointer' } )
-        //     .setAlpha(1) // invisible but interactive
-        //     .on('pointerover', () => {
-        //         if (this.hasItem("key")) {
-        //             this.showMessage("You've got the key for this door.");
-        //         } else {
-        //             this.showMessage("It's locked. Can you find a key?");
-        //         }
-        //     })
-        //     .on('pointerdown', () => {
-        //         if (this.hasItem("key")) {
-        //             this.loseItem("key");
-        //             this.showMessage("*squeak*");
-        //             //door.setText("🚪 unlocked door");
-        //             this.gotoScene("kitchen");
-        //         }
-        //     })
-
         this.addInteractable(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5, "Leave bedroom", 
             () => {
                 this.showMessage("Would you like to go to the kitchen or the living room?");
@@ -75,18 +22,20 @@ class Bedroom extends AdventureScene {
             });
 
         this.addInteractable(this.w * 0.2, this.h * 0.51, this.w * 0.1, this.h * 0.45, "Your closet", 
-            () => {this.showMessage("Wonder what I'm gonna wear today...");});
+            () => {this.showMessage("You wonder what you're gonna wear today...");});
 
         this.addInteractable(this.w * 0.7, this.h * 0.46, this.w * 0.08, this.h * 0.23, "The window", 
-            () => {this.showMessage("The view is nice, but you can't go out there.")});
+            () => {this.showMessage("The sun shines.")});
 
         this.addInteractable(this.w * 0.37, this.h * 0.68, this.w * 0.18, this.h * 0.40, "Your bed", 
-            () => {this.showMessage("It's comfy, but you should get going.")});
+            () => {this.showMessage("It's comfy and still warm, but you should get going.")});
 
         this.addInteractable(this.w * 0.5, this.h * 0.7, this.w * 0.07, this.h * 0.15, "Your nightstand", 
             () => {this.showMessage("You open your nightstand to find a strange series of numbers.\n17, 5, 31\nWhat could it mean?")});
     }
 }
+
+
 
 class Kitchen extends AdventureScene {
     constructor() {
@@ -95,6 +44,12 @@ class Kitchen extends AdventureScene {
 
     preload() {
         this.load.image('kitchen', 'assets/kitchen.png');
+        this.load.image('patheticbackground', 'assets/patheticbackground.png');
+        this.load.image('patheticburger', 'assets/patheticburger-removebg-preview.png');
+        this.load.image('betterbackground', 'assets/betterbackground.png');
+        this.load.image('betterburger', 'assets/betterburger-removebg-preview.png');
+        this.load.image('gloriousbackground', 'assets/gloriousbackground.png');
+        this.load.image('gloriousburger', 'assets/gloriousburger-removebg-preview.png');
     }
 
     onEnter() {
@@ -107,14 +62,12 @@ class Kitchen extends AdventureScene {
         
         this.addInteractable(this.w * 0.7, this.h * 0.5, this.w * 0.1, this.h * 0.55, "Door to the bathroom", 
             () => {this.gotoScene("bathroom")});
-
-        let openedFridge = false;
+ 
         this.addInteractable(this.w * 0.18, this.h * 0.55, this.w * 0.12, this.h * 0.47, "The fridge", 
             () => { 
-                if (this.hasItem("Bacon")) {
-                    this.showMessage("Nothing more to see in here.");
-                }
-                else if (!openedFridge && this.hasItem("Fridge Key")) {
+                if (this.hasItem("Bacon")) { this.showMessage("Nothing more to see in here."); }
+
+                else if (!this.openedFridge && this.hasItem("Fridge Key")) {
                     this.showMessage(
                         "You open the fridge and find patties. You also use the fridge key to find bacon, lettuce and cheese!"
                     );
@@ -123,28 +76,25 @@ class Kitchen extends AdventureScene {
                     this.gainItem("Lettuce");
                     this.gainItem("Cheese");
                     this.gainItem("Bacon");
-                    openedFridge = true;
+                    this.openedFridge = true;
                 }
-                else if (!openedFridge && !this.hasItem("Fridge Key")) {
-                    this.showMessage(
-                        "You open the fridge and find patties. It looks like some more delicious ingedients are locked in the bottom drawer."
-                    );
+
+                else if (!this.openedFridge && !this.hasItem("Fridge Key")) {
+                    this.showMessage("You open the fridge and find patties. It looks like some more delicious ingedients are locked in the bottom drawer.");
                     this.gainItem("Patties");
-                    openedFridge = true;
+                    this.openedFridge = true;
                 } 
+
                 else if (this.hasItem("Fridge Key")) {
                     this.showMessage("You use the key to open the compartment and find bacon, cheese, and lettuce.");
                     this.loseItem("Fridge Key");
-                    if (!this.hasItem("Fridge Key")) {
-                        this.gainItem("Patties");
-                    }
                     this.gainItem("Bacon");
                     this.gainItem("Lettuce");
                     this.gainItem("Cheese");
+                    if (!this.hasItem("Fridge Key")) { this.gainItem("Patties"); }
                 }
-                else
-                    this.showMessage("It looks like some more delicious ingedients are locked in the bottom drawer.");
-                
+
+                else { this.showMessage("It looks like some more delicious ingedients are locked in the bottom drawer."); }
             });
 
         this.addInteractable(this.w * 0.39, this.h * 0.73, this.w * 0.29, this.h * 0.15, "The table", 
@@ -153,7 +103,20 @@ class Kitchen extends AdventureScene {
                     this.showMessage("You could probably whip something up here if you had sufficient ingredients");
                 }
                 else if (this.hasItem("Buns") && this.hasItem("Patties")) {
-                    this.showMessage("Looks like you have enough ingredients to make a decent burger. Do you want to start preparing your glorious meal?")
+                    this.showMessage("Looks like you have enough ingredients to make a decent burger. Do you want to start preparing your glorious meal?");
+                    this.addInteractableText(this.w * 0.75 + this.s, this.h * 0.2, "- Yes", "Yes, I want to prepare my glorious meal",
+                        () => { 
+                            this.cameras.main.fade(this.transitionDuration, 0, 0, 0);
+                            this.time.delayedCall(this.transitionDuration * 3, () => {
+                                if (this.hasItem("Bacon") && this.hasItem("Avocadoes") && this.hasItem("Godot's Spicy Mayonnaise")) {
+                                    this.scene.start('bestending');
+                                }
+                                else if (this.hasItem("Bacon") || this.hasItem("Avocadoes") || this.hasItem("Godot's Spicy Mayonnaise")) {
+                                    this.scene.start('goodending');
+                                }
+                                else { this.scene.start('badending'); }
+                            }); 
+                        });
                 }
             });
 
@@ -181,37 +144,16 @@ class Kitchen extends AdventureScene {
                     this.showMessage("You unlocked the pantry cabinets. Acquired avocados and tomatoes");
                     this.gainItem("Avocadoes");
                     this.gainItem("Tomatoes");
+                    this.loseItem("Pantry Key")
                 }
                 else {
                     this.showMessage("Its a pantry cabinet. There might be more ingredients in here but its locked.");
                 }
             });
-
-        // this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-        //     .setFontSize(this.s * 2)
-        //     .setInteractive()
-        //     .on('pointerover', () => {
-        //         this.showMessage("You've got no other choice, really.");
-        //     })
-        //     .on('pointerdown', () => {
-        //         this.gotoScene('bedroom');
-        //     });
-
-        // let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
-        //     .setInteractive()
-        //     .on('pointerover', () => {
-        //         this.showMessage('*giggles*');
-        //         this.tweens.add({
-        //             targets: finish,
-        //             x: this.s + (this.h - 2 * this.s) * Math.random(),
-        //             y: this.s + (this.h - 2 * this.s) * Math.random(),
-        //             ease: 'Sine.inOut',
-        //             duration: 500
-        //         });
-        //     })
-        //     .on('pointerdown', () => this.gotoScene('outro'));
     }
 }
+
+
 
 class LivingRoom extends AdventureScene {
     constructor() {
@@ -220,6 +162,7 @@ class LivingRoom extends AdventureScene {
 
     preload() {
         this.load.image('living', 'assets/LivingRoom.png');
+        this.load.image('key', 'assets/key-removebg-preview.png');
     }
 
     onEnter() {
@@ -242,11 +185,17 @@ class LivingRoom extends AdventureScene {
             this.showMessage("Relaxing on this fluffy couch would be so much better with a glorious meal!");
         });
 
+        let key = null;
+        if (!this.hasItem("Fridge Key") && !this.hasItem("Bacon")) { 
+            key = this.add.image(this.w * 0.375, this.h * 0.9, 'key');
+        }
+
         this.addInteractable(this.w * 0.37, this.h * 0.84, this.w * 0.33, this.h * 0.15, "A coffee table",
         () => {
-            if (!this.hasItem("Fridge Key")) {
+            if (!this.hasItem("Fridge Key") && !this.hasItem("Bacon")) {
                 this.showMessage("Aquired a fridge compartment key");
                 this.gainItem("Fridge Key");
+                this.tweenAway(key);
             }
             else {
                 this.showMessage("The years of spilled coffee has given this table a fragrant smell");
@@ -256,6 +205,8 @@ class LivingRoom extends AdventureScene {
     }
     
 }
+
+
 
 class Bathroom extends AdventureScene {
     constructor() {
@@ -271,7 +222,7 @@ class Bathroom extends AdventureScene {
             .setDisplaySize(this.w * 0.75, this.h);
 
         this.addInteractable(this.w * 0.05, this.h * 0.5, this.w * 0.1, this.h * 0.5, "Door to the kitchen", 
-        () => {this.gotoScene("kitchen")});
+            () => {this.gotoScene("kitchen")});
 
         this.addInteractable(this.w * 0.25, this.h * 0.36, this.w * 0.14, this.h * 0.27, "Mirror", 
             () => { this.showMessage("Despite everything, it's still you.")});
@@ -279,11 +230,19 @@ class Bathroom extends AdventureScene {
         this.addInteractable(this.w * 0.24, this.h * 0.72, this.w * 0.14, this.h * 0.2, "Sink cabinet", 
             () => { this.showMessage("Just some cleaning products")});
 
-        this.addInteractable(this.w * 0.24, this.h * 0.58, this.w * 0.14, this.h * 0.07, "Sink cabinet", 
-            () => { this.showMessage("You washed your hands in preparation for your meal")});
+        this.addInteractable(this.w * 0.24, this.h * 0.58, this.w * 0.14, this.h * 0.07, "Faucet", 
+            () => { this.showMessage("You washed your hands in preparation for your glorious meal")});
         
+        this.addInteractable(this.w * 0.63, this.h * 0.48, this.w * 0.2, this.h * 0.77, "Shower", 
+            () => { this.showMessage("You took a shower in preparation for your meal")});
+
+        this.addInteractable(this.w * 0.43, this.h * 0.69, this.w * 0.1, this.h * 0.3, "Toilet", 
+            () => { this.showMessage("No urge to use this just yet")});
+            
     }
 }
+
+
 
 class Basement extends AdventureScene {
     constructor() {
@@ -292,6 +251,8 @@ class Basement extends AdventureScene {
 
     preload() {
         this.load.image('basement', 'assets/basement.png');
+        this.load.image('stepladder', 'assets/stepladder-removebg-preview.png');
+        this.load.image('key', 'assets/key-removebg-preview.png');
     }
 
     onEnter() {
@@ -325,24 +286,39 @@ class Basement extends AdventureScene {
                 }
             });
 
+        let key = null;
+
+        if (!this.hasItem("Pantry Key") && !this.hasItem("Avocadoes")) { 
+            key = this.add.image(this.w * 0.006, this.h * 0.58, 'key').setAngle(90);
+        }
+
         this.addInteractable(this.w * 0.053, this.h * 0.45, this.w * 0.065, this.h * 0.22, "The breaker box", 
             () => {
-                if (!this.hasItem("Pantry Key")) {
+                if (!this.hasItem("Pantry Key") && !this.hasItem("Avocadoes")) {
                     this.showMessage("You found a key with the label \"Pantry\"");
                     this.gainItem("Pantry Key");
+                    this.tweenAway(key);
                 }
                 else {
                     this.showMessage("There isnt anything else here except some switches");
                 }
             });
-        
-        this.addInteractable(this.w * 0.2, this.h * 0.6, this.w * 0.1, this.h * 0.3, "A stepladder", 
-            () => {
-                if (!this.hasItem("Stepladder")) {
-                    this.showMessage("Picked up the stepladder");
-                    this.gainItem("Stepladder");
-                }
-            });
+
+        let stepladder = null;
+
+        if (!this.hasItem("Stepladder") && !this.hasItem("Buns")) {
+            stepladder = this.add.image(this.w * 0.375, this.h * 0.68, 'stepladder').setDisplaySize(this.w * 0.75, this.h * 0.7);
+
+            let stepladderInteraction = this.addInteractable(this.w * 0.2, this.h * 0.58, this.w * 0.1, this.h * 0.35, "A stepladder", 
+                () => {
+                    if (!this.hasItem("Stepladder")) {
+                        this.showMessage("Picked up the stepladder");
+                        this.gainItem("Stepladder");
+                        this.tweenAway(stepladder);
+                        this.tweenAway(stepladderInteraction);
+                    }
+                });
+        }
 
         
     }
@@ -350,13 +326,17 @@ class Basement extends AdventureScene {
 
 }
 
+
+
 class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
-        this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
+        this.add.text(50,150, "Wakey Wakey!").setFontSize(40);
+        this.add.text(50,225, "It is morning.").setFontSize(55);
+        this.add.text(50,300, "And you are starving for a glorious meal!").setFontSize(75);
+        this.add.text(50,500, "*Click to wake up*").setFontSize(40);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('bedroom'));
@@ -364,16 +344,69 @@ class Intro extends Phaser.Scene {
     }
 }
 
-class Outro extends Phaser.Scene {
+
+
+class BestEnding extends Phaser.Scene {
     constructor() {
-        super('outro');
+        super('bestending');
+    }
+    preload() {
+        this.load.image('gloriousbackground', 'assets/gloriousbackground.png');
+        this.load.image('gloriousburger', 'assets/gloriousburger-removebg-preview.png');
     }
     create() {
-        this.add.text(50, 50, "That's all!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        this.cameras.main.setBackgroundColor('#444');
+        this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
+        this.w = this.game.config.width;
+        this.h = this.game.config.height;
+        this.add.image(this.w * 0.5, this.h * 0.5, 'gloriousbackground').setDisplaySize(this.w, this.h);
+        this.add.image(this.w * 0.55, this.h * 0.7, 'gloriousburger').setDisplaySize(this.w * 0.5, this.h * 0.5);
+        this.add.text(this.w * 0.25, this.h * 0.85, "What a glorious meal!").setFontSize(80);
     }
 }
+
+
+
+class GoodEnding extends Phaser.Scene {
+    constructor() {
+        super('goodending');
+    }
+    preload() {
+        this.load.image('betterbackground', 'assets/betterbackground.png');
+        this.load.image('betterburger', 'assets/betterburger-removebg-preview.png');
+    }
+    create() {
+        this.cameras.main.setBackgroundColor('#444');
+        this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
+        this.w = this.game.config.width;
+        this.h = this.game.config.height;
+        this.add.image(this.w * 0.5, this.h * 0.5, 'betterbackground').setDisplaySize(this.w, this.h);
+        this.add.image(this.w * 0.55, this.h * 0.7, 'betterburger').setDisplaySize(this.w * 0.5, this.h * 0.5);
+        this.add.text(this.w * 0.155, this.h * 0.85, "That was a fine meal indeed!", { color: '#000000' }).setFontSize(80);
+    }
+}
+
+
+
+class BadEnding extends Phaser.Scene {
+    constructor() {
+        super('badending');
+    }
+    preload() {
+        this.load.image('patheticbackground', 'assets/patheticbackground.png');
+        this.load.image('patheticburger', 'assets/patheticburger-removebg-preview.png');
+    }
+    create() {
+        this.cameras.main.setBackgroundColor('#444');
+        this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
+        this.w = this.game.config.width;
+        this.h = this.game.config.height;
+        this.add.image(this.w * 0.5, this.h * 0.5, 'patheticbackground').setDisplaySize(this.w, this.h);
+        this.add.image(this.w * 0.55, this.h * 0.7, 'patheticburger').setDisplaySize(this.w * 0.5, this.h * 0.5);
+        this.add.text(this.w * 0.05, this.h * 0.85, "Servicable. Could use more ingredients!", { color: '#72bf6a' }).setFontSize(70);
+    }
+}
+
 
 
 const game = new Phaser.Game({
@@ -383,7 +416,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Bathroom, Basement, Intro, Bedroom, Kitchen, LivingRoom, Outro],
+    scene: [Intro, Bedroom, Bathroom, Kitchen, LivingRoom, Basement, BestEnding, GoodEnding, BadEnding],
     title: "A Glorious Meal",
 });
 
