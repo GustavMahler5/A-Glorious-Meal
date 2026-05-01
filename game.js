@@ -161,7 +161,7 @@ class LivingRoom extends AdventureScene {
     }
 
     preload() {
-        this.load.image('living', 'Assets/LivingRoom.png');
+        this.load.image('living', 'Assets/livingroom.png');
         this.load.image('key', 'Assets/key-removebg-preview.png');
     }
 
