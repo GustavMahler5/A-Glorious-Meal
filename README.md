@@ -15,11 +15,11 @@ This animation features 5 different scenes which utilize Adventure.js:
 
 Methods Appended to Adventure.js
 ----------------------
-There are 2 methods that are appended to the engine:
+There are 4 methods that are appended to the engine:
 
 addInteractable(x, y, width, height, label, onClick) {}  
 addInteractableText(x, y, text, label, onClick) {}  
-useItem(requiredItem, selectedItem) {}
+useItem(requiredItem, selectedItem) {}  
 tweenAway(object) {}  
 
 Scenes Not Using Adventure.js
@@ -47,8 +47,8 @@ Examples:
 The Bedroom: A closet and a drawer.  
 The Living Room: A table and a stepladder.  
 The Kitchen: The fridge, cabinets, pantry, and counter.  
-The Basement: A table and a safe. 
-The Bathroom: The sink, shower, and mirror. 
+The Basement: A table and a safe.  
+The Bathroom: The sink, shower, and mirror.  
 
 Objects with Pointerover Messages
 ----------------------
@@ -64,5 +64,5 @@ All objects that are aquirable have dissappearing animations upon collection and
 
 Assets
 ----------------------
-All image assets are drawn by Jason Holtman
+All image assets are drawn by Jason Holtman  
 Used https://www.remove.bg for creating transparent images
