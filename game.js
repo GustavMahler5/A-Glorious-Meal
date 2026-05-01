@@ -416,9 +416,9 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    loader: {
-        baseURL: '/A-Glorious-Meal/'
-    },
+    // loader: {
+    //     baseURL: '/A-Glorious-Meal/'
+    // },
     scene: [Intro, Bedroom, Bathroom, Kitchen, LivingRoom, Basement, BestEnding, GoodEnding, BadEnding],
     title: "A Glorious Meal",
 });
