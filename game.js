@@ -22,10 +22,10 @@ class Bedroom extends AdventureScene {
             });
 
         this.addInteractable(this.w * 0.2, this.h * 0.51, this.w * 0.1, this.h * 0.45, "Your closet", 
-            () => {this.showMessage("You wonder what you're gonna wear today...");});
+            () => {this.showMessage("You wonder what you're gonna wear in the morning...");});
 
         this.addInteractable(this.w * 0.7, this.h * 0.46, this.w * 0.08, this.h * 0.23, "The window", 
-            () => {this.showMessage("The sun shines.")});
+            () => {this.showMessage("The moon shines.")});
 
         this.addInteractable(this.w * 0.37, this.h * 0.68, this.w * 0.18, this.h * 0.40, "Your bed", 
             () => {this.showMessage("It's comfy and still warm, but you should get going.")});
@@ -332,11 +332,17 @@ class Intro extends Phaser.Scene {
     constructor() {
         super('intro')
     }
+    preload() {
+        this.load.audio('bgm', 'assets/bgm.mp3');
+    }
+
     create() {
+        this.audio = new AudioManager(this);
+        this.audio.playMusic();
         this.add.text(50,150, "Wakey Wakey!").setFontSize(40);
-        this.add.text(50,225, "It is morning.").setFontSize(55);
+        this.add.text(50,225, "It is the middle of the night.").setFontSize(55);
         this.add.text(50,300, "And you are starving for a glorious meal!").setFontSize(75);
-        this.add.text(50,500, "*Click to wake up*").setFontSize(40);
+        this.add.text(50,500, "*Click to get up*").setFontSize(40);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('bedroom'));
@@ -404,6 +410,21 @@ class BadEnding extends Phaser.Scene {
         this.add.image(this.w * 0.5, this.h * 0.5, 'patheticbackground').setDisplaySize(this.w, this.h);
         this.add.image(this.w * 0.55, this.h * 0.7, 'patheticburger').setDisplaySize(this.w * 0.5, this.h * 0.5);
         this.add.text(this.w * 0.05, this.h * 0.85, "Servicable. Could use more ingredients!", { color: '#72bf6a' }).setFontSize(70);
+    }
+}
+
+
+
+class AudioManager {
+    constructor(scene) {
+        this.scene = scene;
+        this.backgroundMusic = this.scene.sound.add('bgm');
+    }
+
+    playMusic() {
+        if (!this.backgroundMusic.isPlaying) {
+            this.backgroundMusic.play({ loop: true, volume: 0.2 });
+        }
     }
 }
 

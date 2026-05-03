@@ -65,4 +65,10 @@ All objects that are aquirable have dissappearing animations upon collection and
 Assets
 ----------------------
 All image assets are drawn by Jason Holtman  
+Music:   
+----------------------   
+Nocturne Opus 9 No. 1 in B flat minor   
+Composed by Frédéric Chopin   
+Performed by Jason Holtman   
+
 Used https://www.remove.bg for creating transparent images
